@@ -1,0 +1,8 @@
+@startuml
+
+interface Eater <|.. class Person
+class Person <|-- class Worker
+class Person *-- class Health
+class Person "0.." o-- "..many" class Tools
+
+@enduml

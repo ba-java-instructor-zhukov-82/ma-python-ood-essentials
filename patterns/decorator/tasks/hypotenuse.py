@@ -1,5 +1,6 @@
 from math import sqrt
 
+
 def sum(func):
     def wrapper():
         def result():
@@ -21,6 +22,7 @@ def root(func):
     def wrapper():
         return sqrt(func())
     return wrapper
+
 
 def cathetus():
     try:

@@ -13,15 +13,12 @@ class House(Building):
     def report(self):
         print(self)
 
-    def __setattr__(self, *args):
-        super().__setattr__(*args)
-
     def __str__(self):
         attributes = ''
         attributes_values = dict(self.__dict__)
         for key in attributes_values:
             attributes += attributes_values[key]
-        return 'House {}'.format(attributes)
+        return 'House{}'.format(attributes)
 
 
 class BuildingMaterialDecorator(metaclass=abc.ABCMeta):
@@ -34,7 +31,7 @@ class BuildingMaterialDecorator(metaclass=abc.ABCMeta):
 class BuildingMaterialBrickDecorator(BuildingMaterialDecorator):
 
     def add_decorator(self, building):
-        building.material = 'made with brick'
+        building.material = ' made with brick;'
 
 
 class BuildingColorDecorator(metaclass=abc.ABCMeta):
@@ -47,12 +44,31 @@ class BuildingColorDecorator(metaclass=abc.ABCMeta):
 class BuildingColorGreenDecorator(BuildingColorDecorator):
 
     def add_decorator(self, building):
-        building.color = 'with green facade'
+        building.color = ' with green facade;'
+
+
+class BuildingRoofFormDecorator(metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def add_decorator(self, building):
+        """An abstract method template"""
+
+
+class BuildingRoofFormTriangleDecorator(BuildingColorDecorator):
+
+    def add_decorator(self, building):
+        building.roof_form = ' with triangle roof form;'
 
 
 house = House()
-materil_brick = BuildingMaterialBrickDecorator()
-materil_brick.add_decorator(house)
+
+material_brick = BuildingMaterialBrickDecorator()
+material_brick.add_decorator(house)
+
 color_green = BuildingColorGreenDecorator()
 color_green.add_decorator(house)
+
+roof_form_triangle = BuildingRoofFormTriangleDecorator()
+roof_form_triangle.add_decorator(house)
+
 print(house)

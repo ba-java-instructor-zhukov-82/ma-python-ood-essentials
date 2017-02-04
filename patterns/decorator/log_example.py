@@ -1,8 +1,8 @@
-def log(func, *args):
+def log(func):
     def wrapper(*args):
         print('\t', func.__name__, 'function invoked')
-        return func
-    return wrapper(args)
+        return func(*args)
+    return wrapper
 
 
 @log

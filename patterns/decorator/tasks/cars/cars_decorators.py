@@ -33,3 +33,23 @@ class CarBodyDecorator(metaclass=abc.ABCMeta):
         """An abstract method template"""
 
 
+class CarBodySedanDecorator(CarBodyDecorator):
+
+    def report(self, car):
+        print(car, 'sedan')
+
+
+class CarBodyHatchbackDecorator(CarBodyDecorator):
+
+    def report(self, car):
+        print(car, 'hatchback')
+
+
+bmw = BMW()
+mazda = Mazda()
+
+car_body_sedan_decorator = CarBodySedanDecorator()
+car_body_hatchback_decorator = CarBodyHatchbackDecorator()
+
+car_body_sedan_decorator.report(bmw)
+car_body_hatchback_decorator.report(mazda)

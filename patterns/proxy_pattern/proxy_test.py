@@ -6,12 +6,12 @@ from patterns.proxy_pattern.topic_access_proxy import ForumProxy
 
 def forum_test_true():
     forum = Forum(UserAccess.ADMIN, 'admin')
-    forum.load_topic(UserAccess.ADMIN, 'admin')
+    forum.load_topic('admin')
 
 
 def forum_test_false():
     forum = Forum(UserAccess.ADMIN, 'admin')
-    forum.load_topic(UserAccess.ADMIN, 'secret')
+    forum.load_topic('secret')
 
 
 def proxy_forum_test_access_true():
@@ -23,12 +23,14 @@ def proxy_forum_test_access_false():
     guest = User(UserAccess.GUEST)
     ForumProxy.load_topic(guest, 'admin')
 
+
 def proxy_forum_test_topic_name_false():
     guest = User(UserAccess.GUEST)
     ForumProxy.load_topic(guest, 'secret')
 
-# forum_test_true()
-# forum_test_false()
+
+forum_test_true()
+forum_test_false()
 
 proxy_forum_test_access_true()
 proxy_forum_test_access_false()
